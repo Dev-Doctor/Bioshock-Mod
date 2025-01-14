@@ -8,12 +8,8 @@ import net.minecraft.util.Lazy;
 import java.util.function.Supplier;
 
 public enum ModToolMaterials implements ToolMaterial {
-    BRASS(2, 250, 6.0F, 2.0F, 14, () -> {
-        return Ingredient.ofItems(new ItemConvertible[]{ModItems.BRASS_INGOT});
-    }),
-    ZINC(2, 250, 6.0F, 2.0F, 14, () -> {
-        return Ingredient.ofItems(new ItemConvertible[]{ModItems.ZINC_INGOT});
-    });
+    BRASS(2, 250, 6.0F, 2.0F, 14, () -> Ingredient.ofItems(ModItems.BRASS_INGOT)),
+    ZINC(2, 250, 6.0F, 2.0F, 14, () -> Ingredient.ofItems(ModItems.ZINC_INGOT));
 
 
     private final int miningLevel;

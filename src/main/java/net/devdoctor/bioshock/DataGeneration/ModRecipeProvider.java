@@ -11,7 +11,7 @@ import java.util.List;
 import java.util.function.Consumer;
 
 public class ModRecipeProvider extends FabricRecipeProvider {
-    private static List<ItemConvertible> ZINC_SMELTABLES = List.of(ModBlocks.ZINC_ORE, ModItems.RAW_ZINC);
+    private static final List<ItemConvertible> ZINC_SMELTABLES = List.of(ModBlocks.ZINC_ORE, ModItems.RAW_ZINC);
 
     public ModRecipeProvider(FabricDataGenerator dataGenerator) {
         super(dataGenerator);
