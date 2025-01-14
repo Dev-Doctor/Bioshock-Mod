@@ -1,6 +1,8 @@
 {
   "replace": false,
   "values": [
-    "bioshock:zinc_ore"
+    "bioshock:zinc_ore",
+    "bioshock:zinc_block",
+    "bioshock:brass_block"
   ]
 }

@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "bioshock:zinc_ingot"
+    }
+  ],
+  "result": {
+    "count": 9,
+    "item": "bioshock:zinc_nugget"
+  }
+}

@@ -12,7 +12,8 @@ import net.minecraft.util.registry.Registry;
 
 public class ModBlocks {
     public static final Block ZINC_ORE = registerBlockWithItem("zinc_ore", new Block(Block.Settings.copy(Blocks.IRON_ORE).requiresTool()), ModItemGroups.BIOSHOCK_TAB);
-
+    public static final Block ZINC_BLOCK = registerBlockWithItem("zinc_block", new Block(Block.Settings.copy(Blocks.IRON_BLOCK).requiresTool()), ModItemGroups.BIOSHOCK_TAB);
+    public static final Block BRASS_BLOCK = registerBlockWithItem("brass_block", new Block(Block.Settings.copy(Blocks.IRON_BLOCK).requiresTool()), ModItemGroups.BIOSHOCK_TAB);
 
     public static void registerModBlocks() {
 

@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:item/generated",
   "textures": {
-    "layer0": "bioshock:item/raw_zinc"
+    "layer0": "bioshock:item/brass_shovel"
   }
 }

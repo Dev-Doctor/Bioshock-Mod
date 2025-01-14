@@ -1,5 +1,7 @@
 {
   "variants": {
-    "": { "model": "bioshock:block/zinc_ore" }
+    "": {
+      "model": "bioshock:block/zinc_ore"
+    }
   }
 }
