@@ -15,6 +15,9 @@
 	"icon": "assets/bioshock/icon.png",
 	"environment": "*",
 	"entrypoints": {
+		"fabric-datagen": [
+			"net.devdoctor.bioshock.BioshockDataGenerator"
+		],
 		"main": [
 			"net.devdoctor.bioshock.BioshockMod"
 		],
