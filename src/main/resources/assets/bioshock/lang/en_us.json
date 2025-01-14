@@ -1,0 +1,11 @@
+{
+  "block.bioshock.zinc_ore": "Zinc Ore",
+
+  "item.bioshock.brass_sword": "Brass Sword",
+  "item.bioshock.brass_ingot": "Brass Ingot",
+  "item.bioshock.zinc_ingot": "Zinc Ingot",
+  "item.bioshock.raw_brass": "Raw Brass",
+  "item.bioshock.raw_zinc": "Raw Zinc",
+
+  "itemGroup.bioshock.bioshock_tab": "Bioshock"
+}

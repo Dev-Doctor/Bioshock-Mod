@@ -1,0 +1,23 @@
+package net.devdoctor.bioshock.Items;
+
+import net.devdoctor.bioshock.BioshockMod;
+import net.devdoctor.bioshock.ModItemGroups;
+import net.minecraft.item.Item;
+import net.minecraft.item.SwordItem;
+import net.minecraft.util.Identifier;
+import net.minecraft.util.registry.Registry;
+
+public class ModItems {
+    public static final Item BRASS_INGOT = register("brass_ingot", new Item(new Item.Settings().group(ModItemGroups.BIOSHOCK_TAB)));
+    public static final Item ZINC_INGOT = register("zinc_ingot", new Item(new Item.Settings().group(ModItemGroups.BIOSHOCK_TAB)));
+    public static final Item RAW_ZINC = register("raw_zinc", new Item(new Item.Settings().group(ModItemGroups.BIOSHOCK_TAB)));
+
+    public static final Item BRASS_SWORD = register("brass_sword", new SwordItem(ModToolMaterials.BRASS, 3, -2.4F, new Item.Settings().group(ModItemGroups.BIOSHOCK_TAB).maxCount(1)));
+
+    public static void registerModItems() {
+    }
+
+    public static Item register(String id, Item item) {
+        return Registry.register(Registry.ITEM, Identifier.of(BioshockMod.MOD_ID, id), item);
+    }
+}

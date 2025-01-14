@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " Z ",
+    " Z ",
+    " S "
+  ],
+  "key": {
+    "Z": "bioshock:zinc_ingot",
+    "S": "minecraft:stick"
+  },
+  "result": {
+    "id": "bioshock:zinc_sword",
+    "count": 1
+  }
+}
