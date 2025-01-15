@@ -21,5 +21,6 @@
   "key.bioshock.next_plasmit": "Next Plasmit",
   "key.bioshock.previous_plasmit": "Previous Plasmit",
 
-  "itemGroup.bioshock.bioshock_tab": "Bioshock"
+  "itemGroup.bioshock.bioshock_tab": "Bioshock",
+  "itemGroup.bioshock.bioshock_building_tab": "Bioshock: Buildings"
 }

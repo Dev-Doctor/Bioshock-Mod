@@ -1,4 +1,4 @@
-package net.devdoctor.bioshock.Items;
+package net.devdoctor.bioshock.Items.Enums;
 
 public enum DrugType {
     SALT,

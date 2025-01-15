@@ -12,14 +12,14 @@ import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
 
 public class ModBlocks {
-    public static final Block CHECKED_FLOOR_TILES = registerBlockWithItem("checked_floor_tiles", new Block(AbstractBlock.Settings.copy(Blocks.BLACK_CONCRETE)), ModItemGroups.BIOSHOCK_TAB);
-    public static final Block ZINC_ORE = registerBlockWithItem("zinc_ore", new Block(Block.Settings.copy(Blocks.IRON_ORE).requiresTool()), ModItemGroups.BIOSHOCK_TAB);
-    public static final Block ZINC_BLOCK = registerBlockWithItem("zinc_block", new Block(Block.Settings.copy(Blocks.IRON_BLOCK).requiresTool()), ModItemGroups.BIOSHOCK_TAB);
-    public static final Block BRASS_BLOCK = registerBlockWithItem("brass_block", new Block(Block.Settings.copy(Blocks.IRON_BLOCK).requiresTool()), ModItemGroups.BIOSHOCK_TAB);
+    public static final Block CHECKED_FLOOR_TILES = registerBlockWithItem("checked_floor_tiles", new Block(AbstractBlock.Settings.copy(Blocks.BLACK_CONCRETE)), ModItemGroups.BIOSHOCK_BUILDING);
+    public static final Block ZINC_ORE = registerBlockWithItem("zinc_ore", new Block(Block.Settings.copy(Blocks.IRON_ORE).requiresTool()), ModItemGroups.BIOSHOCK_BUILDING);
+    public static final Block ZINC_BLOCK = registerBlockWithItem("zinc_block", new Block(Block.Settings.copy(Blocks.IRON_BLOCK).requiresTool()), ModItemGroups.BIOSHOCK_BUILDING);
+    public static final Block BRASS_BLOCK = registerBlockWithItem("brass_block", new Block(Block.Settings.copy(Blocks.IRON_BLOCK).requiresTool()), ModItemGroups.BIOSHOCK_BUILDING);
 
-    public static void registerModBlocks() {
+    // public static final Block TEMP_DOOR = registerBlockWithItem("door", new DoorBlock(AbstractBlock.Settings.copy(Blocks.SPRUCE_DOOR)), ModItemGroups.BIOSHOCK_BUILDING);
 
-    }
+    public static void registerModBlocks() {}
 
     public static Block registerBlockWithItem(String name, Block block, ItemGroup itemGroup) {
         Identifier id = Identifier.of(BioshockMod.MOD_ID, name);

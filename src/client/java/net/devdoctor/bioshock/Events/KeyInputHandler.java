@@ -14,9 +14,11 @@ public class KeyInputHandler {
     public static final String KEY_CATEGORY_BIOSHOCK = "key.category.bioshock";
     public static final String KEY_NEXT_PLASMIT = "key.bioshock.next_plasmit";
     public static final String KEY_PREVIOUS_PLASMIT = "key.bioshock.previous_plasmit";
+    public static final String KEY_RELOAD = "key.bioshock.reload";
 
     public static KeyBinding nextPlasmit;
     public static KeyBinding previousPlasmit;
+    public static KeyBinding reload;
 
     private static void registerKeyInputs() {
         ClientTickEvents.END_CLIENT_TICK.register(client -> {
@@ -26,6 +28,9 @@ public class KeyInputHandler {
             }
             if(previousPlasmit.wasPressed()) {
                 client.player.sendMessage(Text.literal("HELLO I AM THE OTHER ONE"));
+            }
+            if(reload.wasPressed()) {
+                client.player.sendMessage(Text.literal("RELOADING"));
             }
         });
     }
@@ -41,6 +46,12 @@ public class KeyInputHandler {
                 KEY_PREVIOUS_PLASMIT,
                 InputUtil.Type.KEYSYM,
                 GLFW.GLFW_KEY_X,
+                KEY_CATEGORY_BIOSHOCK
+        ));
+        reload = KeyBindingHelper.registerKeyBinding(new KeyBinding(
+                KEY_RELOAD,
+                InputUtil.Type.KEYSYM,
+                GLFW.GLFW_KEY_R,
                 KEY_CATEGORY_BIOSHOCK
         ));
 

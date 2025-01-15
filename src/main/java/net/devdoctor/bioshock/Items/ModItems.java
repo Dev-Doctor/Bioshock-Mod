@@ -1,6 +1,8 @@
 package net.devdoctor.bioshock.Items;
 
 import net.devdoctor.bioshock.BioshockMod;
+import net.devdoctor.bioshock.Items.Enums.EWeaponType;
+import net.devdoctor.bioshock.Items.Enums.EveType;
 import net.devdoctor.bioshock.ModItemGroups;
 import net.minecraft.item.*;
 import net.minecraft.util.Identifier;
@@ -24,6 +26,8 @@ public class ModItems {
     public static final Item RAW_ZINC = register("raw_zinc", new Item(new Item.Settings().group(ModItemGroups.BIOSHOCK_TAB)));
     public static final Item ZINC_INGOT = register("zinc_ingot", new Item(new Item.Settings().group(ModItemGroups.BIOSHOCK_TAB)));
     public static final Item ZINC_NUGGET = register("zinc_nugget", new Item(new Item.Settings().group(ModItemGroups.BIOSHOCK_TAB)));
+
+    public static final Item REVOLVER = register("revolver", new GunLike(new Item.Settings().group(ModItemGroups.BIOSHOCK_TAB), EWeaponType.REVOLVER));
 
 
     public static void registerModItems() {

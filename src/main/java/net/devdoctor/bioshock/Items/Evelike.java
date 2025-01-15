@@ -1,5 +1,6 @@
 package net.devdoctor.bioshock.Items;
 
+import net.devdoctor.bioshock.Items.Enums.EveType;
 import net.devdoctor.bioshock.util.EveData;
 import net.devdoctor.bioshock.util.IEntityDataSaver;
 import net.minecraft.advancement.criterion.Criteria;

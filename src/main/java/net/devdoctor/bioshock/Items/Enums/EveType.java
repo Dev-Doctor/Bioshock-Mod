@@ -1,5 +1,6 @@
-package net.devdoctor.bioshock.Items;
+package net.devdoctor.bioshock.Items.Enums;
 
+import net.devdoctor.bioshock.Items.ModItems;
 import net.minecraft.item.Item;
 import net.minecraft.item.Items;
 import net.minecraft.util.UseAction;

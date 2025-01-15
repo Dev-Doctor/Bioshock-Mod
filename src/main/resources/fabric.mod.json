@@ -23,6 +23,9 @@
 		],
 		"client": [
 			"net.devdoctor.bioshock.BioshockModClient"
+		],
+		"terrablender": [
+			"net.devdoctor.bioshock.World.Biomes.ModTerrablenderAPI"
 		]
 	},
 	"mixins": [
