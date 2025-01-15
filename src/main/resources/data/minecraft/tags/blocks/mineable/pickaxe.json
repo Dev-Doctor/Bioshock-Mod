@@ -3,6 +3,7 @@
   "values": [
     "bioshock:zinc_ore",
     "bioshock:zinc_block",
-    "bioshock:brass_block"
+    "bioshock:brass_block",
+    "bioshock:checked_floor_tiles"
   ]
 }

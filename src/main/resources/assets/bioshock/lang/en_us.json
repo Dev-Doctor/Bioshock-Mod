@@ -1,4 +1,5 @@
 {
+  "block.bioshock.checked_floor_tiles": "Checked Floor Tiles",
   "block.bioshock.zinc_ore": "Zinc Ore",
   "block.bioshock.zinc_block": "Zinc Block",
   "block.bioshock.brass_block": "Brass Block",
@@ -9,9 +10,16 @@
   "item.bioshock.brass_pickaxe": "Brass Pickaxe",
   "item.bioshock.brass_sword": "Brass Sword",
   "item.bioshock.brass_shovel": "Brass Shovel",
+  "item.bioshock.empty_syringe": "Empty Syringe",
   "item.bioshock.raw_zinc": "Raw Zinc",
   "item.bioshock.zinc_ingot": "Zinc Ingot",
   "item.bioshock.zinc_nugget": "Zinc Nugget",
+
+  "item.bioshock.eve_phial": "Eve Phial",
+
+  "key.category.bioshock": "Bioshock Mod",
+  "key.bioshock.next_plasmit": "Next Plasmit",
+  "key.bioshock.previous_plasmit": "Previous Plasmit",
 
   "itemGroup.bioshock.bioshock_tab": "Bioshock"
 }

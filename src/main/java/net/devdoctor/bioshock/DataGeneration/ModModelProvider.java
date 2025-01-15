@@ -15,6 +15,7 @@ public class ModModelProvider extends FabricModelProvider {
 
     @Override
     public void generateBlockStateModels(BlockStateModelGenerator blockStateModelGenerator) {
+        blockStateModelGenerator.registerSimpleCubeAll(ModBlocks.CHECKED_FLOOR_TILES);
         blockStateModelGenerator.registerSimpleCubeAll(ModBlocks.BRASS_BLOCK);
         blockStateModelGenerator.registerSimpleCubeAll(ModBlocks.ZINC_BLOCK);
         blockStateModelGenerator.registerSimpleCubeAll(ModBlocks.ZINC_ORE);
@@ -32,5 +33,7 @@ public class ModModelProvider extends FabricModelProvider {
         itemModelGenerator.register(ModItems.BRASS_PICKAXE, Models.GENERATED);
         itemModelGenerator.register(ModItems.BRASS_AXE, Models.GENERATED);
         itemModelGenerator.register(ModItems.BRASS_SHOVEL, Models.GENERATED);
+
+        itemModelGenerator.register(ModItems.EMPTY_SYRINGE, Models.GENERATED);
     }
 }

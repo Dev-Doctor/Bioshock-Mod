@@ -15,7 +15,8 @@ public class ModBlockTagProvider extends FabricTagProvider.BlockTagProvider {
         getOrCreateTagBuilder(BlockTags.PICKAXE_MINEABLE)
                 .add(ModBlocks.ZINC_ORE)
                 .add(ModBlocks.ZINC_BLOCK)
-                .add(ModBlocks.BRASS_BLOCK);
+                .add(ModBlocks.BRASS_BLOCK)
+                .add(ModBlocks.CHECKED_FLOOR_TILES);
 
         getOrCreateTagBuilder(BlockTags.NEEDS_IRON_TOOL)
                 .add(ModBlocks.ZINC_ORE)

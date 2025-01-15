@@ -2,6 +2,7 @@ package net.devdoctor.bioshock;
 
 import net.devdoctor.bioshock.Blocks.ModBlocks;
 import net.devdoctor.bioshock.Items.ModItems;
+import net.devdoctor.bioshock.Networking.ModPackaces;
 import net.fabricmc.api.ModInitializer;
 
 import org.slf4j.Logger;
@@ -23,6 +24,8 @@ public class BioshockMod implements ModInitializer {
 
 		ModItems.registerModItems();
 		ModBlocks.registerModBlocks();
+
+		ModPackaces.registerC2SPackets();
 
 		LOGGER.info("Hello Fabric world!");
 	}
