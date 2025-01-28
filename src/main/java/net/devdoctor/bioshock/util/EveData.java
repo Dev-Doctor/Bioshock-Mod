@@ -15,7 +15,7 @@ public class EveData {
         } else {
             eve += amount;
         }
-        nbt.putInt("eve", eve);
+        nbt.putInt(EVE_NBT_ID, eve);
         // sync data
         return eve;
     }
@@ -28,7 +28,7 @@ public class EveData {
         } else {
             eve -= amount;
         }
-        nbt.putInt("eve", eve);
+        nbt.putInt(EVE_NBT_ID, eve);
         // sync data
         return eve;
     }

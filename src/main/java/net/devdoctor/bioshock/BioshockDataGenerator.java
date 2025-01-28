@@ -10,9 +10,11 @@ import net.fabricmc.fabric.api.datagen.v1.FabricDataGenerator;
 public class BioshockDataGenerator implements DataGeneratorEntrypoint {
     @Override
     public void onInitializeDataGenerator(FabricDataGenerator generator) {
+        /*
         generator.addProvider(ModBlockTagProvider::new);
         generator.addProvider(ModLootTableProvider::new);
         generator.addProvider(ModModelProvider::new);
         generator.addProvider(ModRecipeProvider::new);
+         */
     }
 }

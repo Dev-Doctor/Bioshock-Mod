@@ -25,6 +25,8 @@ public class BioshockMod implements ModInitializer {
 		ModItems.registerModItems();
 		ModBlocks.registerModBlocks();
 
+		ModItemGroups.registerItemGroups();
+
 		ModPackaces.registerC2SPackets();
 
 		LOGGER.info("Hello Fabric world!");

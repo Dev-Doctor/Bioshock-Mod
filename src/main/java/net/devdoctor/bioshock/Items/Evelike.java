@@ -9,7 +9,6 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemUsage;
-import net.minecraft.item.Items;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.stat.Stats;
 import net.minecraft.text.Style;
@@ -23,6 +22,7 @@ import net.minecraft.world.event.GameEvent;
 
 public class Evelike extends Item {
     EveType eveType;
+
     public Evelike(EveType eveType, Settings settings) {
         super(settings);
         this.eveType = eveType;
@@ -45,13 +45,14 @@ public class Evelike extends Item {
 
     @Override
     public ItemStack finishUsing(ItemStack stack, World world, LivingEntity user) {
-        PlayerEntity playerEntity = user instanceof PlayerEntity ? (PlayerEntity)user : null;
+        PlayerEntity playerEntity = user instanceof PlayerEntity ? (PlayerEntity) user : null;
 
         if (playerEntity instanceof ServerPlayerEntity) {
-            Criteria.CONSUME_ITEM.trigger((ServerPlayerEntity)playerEntity, stack);
+            Criteria.CONSUME_ITEM.trigger((ServerPlayerEntity) playerEntity, stack);
         }
 
         if (!world.isClient) {
+            assert playerEntity != null;
             switch (eveType.getDrugType()) {
                 case SALT -> {
                     // add salt tho
@@ -59,6 +60,7 @@ public class Evelike extends Item {
                     EveData.addEve(((IEntityDataSaver) playerEntity), eveType.getHealQuantity());
                 }
                 case EVE -> {
+
                     playerEntity.sendMessage(Text.literal("Healed by: " + eveType.getHealQuantity()));
                     EveData.addEve(((IEntityDataSaver) playerEntity), eveType.getHealQuantity());
                 }
@@ -76,23 +78,12 @@ public class Evelike extends Item {
         }
 
         if (playerEntity == null || !playerEntity.getAbilities().creativeMode) {
-            Item result;
-            switch (eveType.getDrugType()) {
-                case SALT -> {
-                    result = Items.GLASS_BOTTLE;
-                }
-                case EVE -> {
-                    result = ModItems.EMPTY_SYRINGE;
-                }
-                default -> result = Items.ACACIA_BOAT;
-            }
-
             if (stack.isEmpty()) {
-                return new ItemStack(result);
+                return new ItemStack(eveType.getResultItemSupplier());
             }
 
             if (playerEntity != null) {
-                playerEntity.getInventory().insertStack(new ItemStack(result));
+                playerEntity.getInventory().insertStack(new ItemStack(eveType.getResultItemSupplier()));
             }
         }
 

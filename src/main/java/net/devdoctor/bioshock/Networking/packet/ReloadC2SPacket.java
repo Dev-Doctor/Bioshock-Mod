@@ -1,5 +1,6 @@
 package net.devdoctor.bioshock.Networking.packet;
 
+import net.devdoctor.bioshock.BioshockMod;
 import net.devdoctor.bioshock.Items.GunLike;
 import net.fabricmc.fabric.api.networking.v1.PacketSender;
 import net.minecraft.entity.EntityType;
@@ -15,7 +16,7 @@ public class ReloadC2SPacket {
                                ServerPlayNetworkHandler handler, PacketByteBuf bug, PacketSender responseSender) {
         if(player.getMainHandStack().getItem() instanceof GunLike) {
             ItemStack itemStack = player.getMainHandStack();
-            itemStack.getOrCreateNbt().putBoolean("isReloading", bug.readBoolean());
+            itemStack.getOrCreateNbt().putBoolean("isReloading", true);
         }
     }
 }

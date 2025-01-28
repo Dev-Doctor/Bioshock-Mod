@@ -2,15 +2,15 @@ package net.devdoctor.bioshock.DataGeneration;
 
 import net.devdoctor.bioshock.Blocks.ModBlocks;
 import net.devdoctor.bioshock.Items.ModItems;
-import net.fabricmc.fabric.api.datagen.v1.FabricDataGenerator;
+import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricModelProvider;
 import net.minecraft.data.client.BlockStateModelGenerator;
 import net.minecraft.data.client.ItemModelGenerator;
 import net.minecraft.data.client.Models;
 
 public class ModModelProvider extends FabricModelProvider {
-    public ModModelProvider(FabricDataGenerator dataGenerator) {
-        super(dataGenerator);
+    public ModModelProvider(FabricDataOutput output) {
+        super(output);
     }
 
     @Override
