@@ -1,7 +1,9 @@
 package net.devdoctor.bioshock.Items.Enums;
 
+import net.devdoctor.bioshock.Items.ModItems;
 import net.minecraft.item.Item;
-import net.minecraft.item.Items;
+
+import java.util.function.Supplier;
 
 public enum EWeaponType {
     REVOLVER(
@@ -9,10 +11,11 @@ public enum EWeaponType {
             5,
             6,
             1,
-            Items.ARROW,
+            () -> ModItems.S_PISTOL_ROUNDS,
             5,
             new float[]{0, 0},
-            new float[]{0, 0}
+            new float[]{0, 0},
+            EWeaponSounds.REVOLVER
     );
     // MACHINE_GUN(, , , , , , ),
     // SHOTGUN(, , , , , , ),
@@ -24,13 +27,14 @@ public enum EWeaponType {
     private final int rateOfFire;
     private final int magSize;
     private final int pelletCount;
-    private final Item ammoType;
+    private final Supplier<Item> ammoType;
     private final int reloadCoolDown;
     private final float[] gunRecoil;
     private final float[] bulletSpread;
+    private final EWeaponSounds weaponSounds;
 
 
-    EWeaponType(float gunDamage, int rateOfFire, int magSize, int pelletCount, Item ammoType, int reloadCoolDown, float[] gunRecoil, float[] bulletSpread) {
+    EWeaponType(float gunDamage, int rateOfFire, int magSize, int pelletCount, Supplier<Item> ammoType, int reloadCoolDown, float[] gunRecoil, float[] bulletSpread, EWeaponSounds weaponSounds) {
         this.gunDamage = gunDamage;
         this.rateOfFire = rateOfFire;
         this.magSize = magSize;
@@ -39,6 +43,7 @@ public enum EWeaponType {
         this.reloadCoolDown = reloadCoolDown;
         this.gunRecoil = gunRecoil;
         this.bulletSpread = bulletSpread;
+        this.weaponSounds = weaponSounds;
     }
 
     public float getGunDamage() {
@@ -59,7 +64,7 @@ public enum EWeaponType {
     }
 
     public Item getAmmoType() {
-        return ammoType;
+        return ammoType.get();
     }
 
     public int getReloadCoolDown() {
@@ -72,5 +77,9 @@ public enum EWeaponType {
 
     public float[] getBulletSpread() {
         return bulletSpread;
+    }
+
+    public EWeaponSounds getWeaponSounds() {
+        return weaponSounds;
     }
 }

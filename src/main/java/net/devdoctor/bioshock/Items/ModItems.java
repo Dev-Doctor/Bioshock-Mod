@@ -27,7 +27,15 @@ public class ModItems {
     public static final Item ZINC_INGOT = register("zinc_ingot", new Item(new Item.Settings()));
     public static final Item ZINC_NUGGET = register("zinc_nugget", new Item(new Item.Settings()));
 
+    /* ################################# WEAPONS ################################# */
     public static final Item REVOLVER = register("revolver", new GunLike(new Item.Settings(), EWeaponType.REVOLVER));
+
+    /* #################################   AMMO  ################################# */
+    public static final Item S_PISTOL_ROUNDS = register("standard_pistol_rounds", new Item(new Item.Settings()));
+    public static final Item AP_PISTOL_ROUNDS = register("ap_pistol_rounds", new Item(new Item.Settings()));
+    public static final Item AnP_PISTOL_ROUNDS = register("antipersonnel_pistol_rounds", new Item(new Item.Settings()));
+
+
 
     public static final Item TEST_ITEM = register("test_item", new TestItem(new Item.Settings()));
 

@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "bioshock:item/s_pistol_rounds"
+  }
+}

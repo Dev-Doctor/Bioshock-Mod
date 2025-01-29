@@ -1,6 +1,7 @@
 package net.devdoctor.bioshock.Items;
 
 import net.devdoctor.bioshock.BioshockMod;
+import net.devdoctor.bioshock.Entities.GunProjectileEntity;
 import net.devdoctor.bioshock.Items.Enums.EWeaponType;
 import net.devdoctor.bioshock.util.InventoryUtil;
 import net.minecraft.block.BlockState;
@@ -12,6 +13,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.item.RangedWeaponItem;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.server.network.ServerPlayerEntity;
+import net.minecraft.sound.SoundCategory;
 import net.minecraft.text.Text;
 import net.minecraft.util.Hand;
 import net.minecraft.util.TypedActionResult;
@@ -59,9 +61,9 @@ public class GunLike extends RangedWeaponItem {
             // for each pellet
             for (int i = 0; i < weaponType.getPelletCount(); i++) {
                 // create a new projectile entity
-                // GunProjectileEntity projectile = new GunProjectileEntity(playerEntity, world, weaponType.getGunDamage());
+                GunProjectileEntity projectile = new GunProjectileEntity(playerEntity, world, weaponType.getGunDamage());
 
-                FireballEntity projectile = new FireballEntity(world, playerEntity, 0, 0, 0, 0);
+                // FireballEntity projectile = new FireballEntity(world, playerEntity, 0, 0, 0, 0);
 
                 // set its position to the eye height
                 projectile.setPosition(playerEntity.getX(), playerEntity.getEyeY(), playerEntity.getZ());
@@ -87,12 +89,16 @@ public class GunLike extends RangedWeaponItem {
                     event.sendEquipmentBreakStatus(EquipmentSlot.MAINHAND);
                 });
             }
-            /*
-            world.playSound(null,
-                    playerEntity.getX(), playerEntity.getY(), playerEntity.getZ(),
 
-                    );
-            */
+            playerEntity.getWorld().playSound(
+                    null,
+                    playerEntity.getBlockPos(),
+                    weaponType.getWeaponSounds().getShoot(),
+                    SoundCategory.PLAYERS,
+                    .5F,
+                    1F
+            );
+
         }
     }
 
@@ -157,8 +163,27 @@ public class GunLike extends RangedWeaponItem {
     public void finishReload(ServerPlayerEntity playerEntity, ItemStack itemStack) {
         NbtCompound nbt = itemStack.getOrCreateNbt();
 
+        // if the weapon is full don't do shit
+        if (remainingAmmo(itemStack) == weaponType.getMagSize()) {
+            nbt.putBoolean(NBT_RELOADING_ID, false);
+            return;
+        }
+
         int missingAmmo = weaponType.getMagSize() - nbt.getInt(NBT_AMMO_ID);
         int availableAmmoInInventory = InventoryUtil.countItemInInventory(playerEntity, weaponType.getAmmoType());
+
+        // if there are no ammunition in the player inventory
+        if (availableAmmoInInventory == 0) {
+            // play the appropriate sound and return
+            playerEntity.getWorld().playSound(
+                    null,
+                    playerEntity.getBlockPos(),
+                    weaponType.getWeaponSounds().getNoAmmo(),
+                    SoundCategory.PLAYERS
+            );
+            nbt.putBoolean(NBT_RELOADING_ID, false);
+            return;
+        }
 
         if (availableAmmoInInventory >= missingAmmo) {
             BioshockMod.LOGGER.info("availableAmmoInInventory >= missingAmmo");
@@ -174,6 +199,13 @@ public class GunLike extends RangedWeaponItem {
         BioshockMod.LOGGER.info(Integer.toString(this.getMaxDamage() - ((nbt.getInt(NBT_AMMO_ID) * 10) + 1)));
         BioshockMod.LOGGER.info(Integer.toString(this.getMaxDamage()) + "+"
                 + Integer.toString(nbt.getInt(NBT_AMMO_ID)) + "* 10 + 1");
+
+        playerEntity.getWorld().playSound(
+                null,
+                playerEntity.getBlockPos(),
+                weaponType.getWeaponSounds().getReload(),
+                SoundCategory.PLAYERS
+        );
 
         nbt.putBoolean(NBT_RELOADING_ID, false);
     }

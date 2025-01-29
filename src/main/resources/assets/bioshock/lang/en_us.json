@@ -4,6 +4,9 @@
   "block.bioshock.zinc_block": "Zinc Block",
   "block.bioshock.brass_block": "Brass Block",
 
+  "death.attack.shoot": "%1$s was shoot by %2$s",
+  "death.attack.shoot.item": "%1$s was shoot by %2$s with %3$s",
+
   "item.bioshock.brass_ingot": "Brass Ingot",
   "item.bioshock.brass_axe": "Brass Axe",
   "item.bioshock.brass_nugget": "Brass Nugget",
@@ -12,6 +15,9 @@
   "item.bioshock.brass_shovel": "Brass Shovel",
   "item.bioshock.empty_syringe": "Empty Syringe",
   "item.bioshock.raw_zinc": "Raw Zinc",
+  "item.bioshock.antipersonnel_pistol_rounds": "Antipersonnel Pistol Round",
+  "item.bioshock.standard_pistol_rounds": "Standard Pistol Round",
+  "item.bioshock.ap_pistol_rounds": "Armor-Piercing Pistol Round",
   "item.bioshock.zinc_ingot": "Zinc Ingot",
   "item.bioshock.zinc_nugget": "Zinc Nugget",
 
@@ -24,5 +30,10 @@
   "key.bioshock.previous_plasmit": "Previous Plasmit",
 
   "itemGroup.bioshock.bioshock_tab": "Bioshock",
-  "itemGroup.bioshock.bioshock_building_tab": "Bioshock: Buildings"
+  "itemGroup.bioshock.bioshock_building_tab": "Bioshock: Buildings",
+
+  "sounds.bioshock.pistol_equip": "revolver equipped",
+  "sounds.bioshock.pistol_noammo": "revolver out of ammo",
+  "sounds.bioshock.pistol_fire": "revolver shooting",
+  "sounds.bioshock.pistol_reload": "revolver reloading"
 }

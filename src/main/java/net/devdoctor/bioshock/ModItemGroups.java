@@ -28,6 +28,10 @@ public class ModItemGroups {
                         entries.add(ModItems.EMPTY_SYRINGE);
                         entries.add(ModItems.EVE_PHIAL);
                         entries.add(ModItems.REVOLVER);
+                        entries.add(ModItems.S_PISTOL_ROUNDS);
+                        entries.add(ModItems.AP_PISTOL_ROUNDS);
+                        entries.add(ModItems.AnP_PISTOL_ROUNDS);
+                        entries.add(ModItems.REVOLVER);
                         entries.add(ModItems.TEST_ITEM);
                     })).build()
     );

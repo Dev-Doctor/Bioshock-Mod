@@ -1,8 +1,11 @@
 package net.devdoctor.bioshock.Entities;
 
+import net.devdoctor.bioshock.ModDamageTypes;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.damage.DamageSource;
+import net.minecraft.entity.damage.DamageTypes;
 import net.minecraft.entity.projectile.PersistentProjectileEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.hit.BlockHitResult;
@@ -49,7 +52,7 @@ public class GunProjectileEntity extends PersistentProjectileEntity {
             }
 
             /* !!!!!!!!!!!!!!!!!!!!!!!!!!!! PROJECTILE DOESNT DAMAGE !!!!!!!!!!!!!!!!!!!!!!!!!!!! */
-            // livingEntity.damage(new DamageSource(DamageTypes.ARROW, e), projectileDamage);
+            livingEntity.damage(ModDamageTypes.of(getWorld(), ModDamageTypes.SHOOT_DAMAGE_TYPE, getOwner()), projectileDamage);
             timeUntilRegen = 0;
         }
         this.discard();

@@ -1,0 +1,30 @@
+{
+  "pistol_equip": {
+    "subtitle": "sounds.bioshock.pistol_equip",
+    "sounds": [
+      "bioshock:pistol_equip"
+    ]
+  },
+  "pistol_noammo": {
+    "subtitle": "sounds.bioshock.pistol_noammo",
+    "sounds": [
+      "bioshock:pistol_noammo"
+    ]
+  },
+  "pistol_fire": {
+    "subtitle": "sounds.bioshock.pistol_fire",
+    "sounds": [
+      "bioshock:pistol_fire_1",
+      "bioshock:pistol_fire_2",
+      "bioshock:pistol_fire_3"
+    ]
+  },
+  "pistol_reload": {
+    "subtitle": "sounds.bioshock.pistol_reload",
+    "sounds": [
+      "bioshock:pistol_reload_1",
+      "bioshock:pistol_reload_2",
+      "bioshock:pistol_reload_3"
+    ]
+  }
+}
