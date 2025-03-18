@@ -1,7 +1,7 @@
-package net.devdoctor.bioshock.bioshock.Blocks;
+package net.devdoctor.bioshock.Blocks;
 
-import net.devdoctor.bioshock.bioshock.Bioshock;
-import net.devdoctor.bioshock.bioshock.Items.ModItems;
+import net.devdoctor.bioshock.BioshockMod;
+import net.devdoctor.bioshock.Items.ModItems;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
@@ -21,11 +21,13 @@ import java.util.List;
 import java.util.function.Supplier;
 
 public class ModBlocks {
-    public static DeferredRegister<Block> BLOCKS = DeferredRegister.create(ForgeRegistries.BLOCKS, Bioshock.MOD_ID);
+    public static DeferredRegister<Block> BLOCKS = DeferredRegister.create(ForgeRegistries.BLOCKS, BioshockMod.MOD_ID);
 
     public static final RegistryObject<Block> BRASS_BLOCK = registerBlock("brass_block", () -> new Block(BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK)));
+    public static final RegistryObject<Block> ZINC_BLOCK = registerBlock("zinc_block", () -> new Block(BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK)));
+    public static final RegistryObject<Block> ZINC_ORE = registerBlock("zinc_ore", () -> new Block(BlockBehaviour.Properties.copy(Blocks.IRON_ORE)));
 
-
+    public static final RegistryObject<Block> CHECKED_FLOOR_TILES = registerBlock("checked_floor_tiles", () -> new Block(BlockBehaviour.Properties.copy(Blocks.STONE_BRICKS)));
 
 
     /* ------------------------------ REGISTER ------------------------------ */
