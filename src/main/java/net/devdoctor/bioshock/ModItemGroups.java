@@ -27,17 +27,17 @@ public class ModItemGroups {
                         entries.add(ModItems.BRASS_SHOVEL);
                         entries.add(ModItems.EMPTY_SYRINGE);
                         entries.add(ModItems.EVE_PHIAL);
+                        entries.add(ModItems.ADAM_SYRINGE);
                         entries.add(ModItems.REVOLVER);
                         entries.add(ModItems.S_PISTOL_ROUNDS);
                         entries.add(ModItems.AP_PISTOL_ROUNDS);
                         entries.add(ModItems.AnP_PISTOL_ROUNDS);
-                        entries.add(ModItems.REVOLVER);
                         entries.add(ModItems.TEST_ITEM);
                     })).build()
     );
     public static final ItemGroup BIOSHOCK_BUILDING = Registry.register(Registries.ITEM_GROUP,
             new Identifier(BioshockMod.MOD_ID,"bioshock_building_tab"),
-            FabricItemGroup.builder().displayName(Text.translatable("itemgroup.bioshock_building_tab"))
+            FabricItemGroup.builder().displayName(Text.translatable("itemgroup.bioshock.bioshock_building_tab"))
                     .icon( () -> new ItemStack(ModBlocks.CHECKED_FLOOR_TILES)).entries(((displayContext, entries) -> {
                         entries.add(ModBlocks.CHECKED_FLOOR_TILES);
                         entries.add(ModBlocks.BRASS_BLOCK);
@@ -47,8 +47,8 @@ public class ModItemGroups {
     );
 
     public static void registerItemGroups() {
-        ItemGroupEvents.modifyEntriesEvent(ItemGroups.INGREDIENTS).register(entries -> {
-            // entries.add(...)
+        ItemGroupEvents.modifyEntriesEvent(ItemGroups.SPAWN_EGGS).register(entries -> {
+            entries.add(ModItems.ADAM_SLUG_SPAWN_EGG);
         });
     }
 }

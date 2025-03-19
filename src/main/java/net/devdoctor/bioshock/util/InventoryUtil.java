@@ -4,6 +4,7 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.registry.tag.TagKey;
 
 public class InventoryUtil {
 
@@ -16,6 +17,11 @@ public class InventoryUtil {
      */
     public static int countItemInInventory(PlayerEntity player, Item item) {
         PlayerInventory inventory = player.getInventory();
+
+        if(item == null) {
+            return 0;
+        }
+
         int result = 0;
         for (int i = 0; i < inventory.size(); i++) {
             ItemStack current = inventory.getStack(i);
@@ -29,6 +35,10 @@ public class InventoryUtil {
     public static boolean removeItemFromInventory(PlayerEntity player, Item itemToRemove, int amount) {
         int nOfItemsToRem = amount;
         PlayerInventory inventory = player.getInventory();
+
+        if(itemToRemove == null) {
+            return false;
+        }
 
         for (int i = 0; i < inventory.size(); i++) {
             ItemStack current = inventory.getStack(i);
@@ -44,5 +54,16 @@ public class InventoryUtil {
             }
         }
         return false;
+    }
+
+    public static Item searchForItemMatchingTag(PlayerEntity entity, TagKey<Item> tagKey) {
+        PlayerInventory inventory = entity.getInventory();
+        for (int i = 0; i < inventory.size(); i++) {
+            ItemStack current = inventory.getStack(i);
+            if(current.streamTags().anyMatch(tagKey::equals)) {
+                return current.getItem();
+            }
+        }
+        return null;
     }
 }

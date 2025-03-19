@@ -1,7 +1,11 @@
 package net.devdoctor.bioshock.Items.Enums;
 
+import net.devdoctor.bioshock.Items.ModItemTags;
 import net.devdoctor.bioshock.Items.ModItems;
+import net.devdoctor.bioshock.util.InventoryUtil;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
+import net.minecraft.registry.tag.TagKey;
 
 import java.util.function.Supplier;
 
@@ -11,7 +15,7 @@ public enum EWeaponType {
             5,
             6,
             1,
-            () -> ModItems.S_PISTOL_ROUNDS,
+            () -> ModItemTags.REVOLVER_AMMO,
             5,
             new float[]{0, 0},
             new float[]{0, 0},
@@ -27,14 +31,14 @@ public enum EWeaponType {
     private final int rateOfFire;
     private final int magSize;
     private final int pelletCount;
-    private final Supplier<Item> ammoType;
+    private final Supplier<TagKey<Item>> ammoType;
     private final int reloadCoolDown;
     private final float[] gunRecoil;
     private final float[] bulletSpread;
     private final EWeaponSounds weaponSounds;
 
 
-    EWeaponType(float gunDamage, int rateOfFire, int magSize, int pelletCount, Supplier<Item> ammoType, int reloadCoolDown, float[] gunRecoil, float[] bulletSpread, EWeaponSounds weaponSounds) {
+    EWeaponType(float gunDamage, int rateOfFire, int magSize, int pelletCount, Supplier<TagKey<Item>> ammoType, int reloadCoolDown, float[] gunRecoil, float[] bulletSpread, EWeaponSounds weaponSounds) {
         this.gunDamage = gunDamage;
         this.rateOfFire = rateOfFire;
         this.magSize = magSize;
@@ -63,7 +67,11 @@ public enum EWeaponType {
         return pelletCount;
     }
 
-    public Item getAmmoType() {
+    public Item getAmmoType(PlayerEntity playerEntity) {
+        return InventoryUtil.searchForItemMatchingTag(playerEntity, ammoType.get());
+    }
+
+    public TagKey<Item> getAmmoType() {
         return ammoType.get();
     }
 

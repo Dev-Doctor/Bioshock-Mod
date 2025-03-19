@@ -8,7 +8,7 @@ import net.minecraft.block.BlockState;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.entity.projectile.FireballEntity;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.RangedWeaponItem;
 import net.minecraft.nbt.NbtCompound;
@@ -17,6 +17,7 @@ import net.minecraft.sound.SoundCategory;
 import net.minecraft.text.Text;
 import net.minecraft.util.Hand;
 import net.minecraft.util.TypedActionResult;
+import net.minecraft.util.UseAction;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
@@ -26,6 +27,7 @@ import java.util.function.Predicate;
 public class GunLike extends RangedWeaponItem {
     public static String NBT_AMMO_ID = "ammo";
     public static String NBT_RELOADING_ID = "isReloading";
+    public static String NBT_LOADED_AMMO = "AmmoType";
 
     EWeaponType weaponType;
 
@@ -45,18 +47,16 @@ public class GunLike extends RangedWeaponItem {
         if (!player.getItemCooldownManager().isCoolingDown(this) && isLoaded(stack)) {
             this.shootWeapon(world, player, stack);
             player.getItemCooldownManager().set(this, weaponType.getRateOfFire());
-            return TypedActionResult.success(stack);
+            return TypedActionResult.fail(stack);
         }
 
         return TypedActionResult.fail(stack);
     }
 
     private void shootWeapon(World world, PlayerEntity playerEntity, ItemStack itemStack) {
-        itemStack.getOrCreateNbt().putInt("rldTick", 0);
         itemStack.getOrCreateNbt().putBoolean(NBT_RELOADING_ID, false);
 
-        // if client don't execute
-
+        // ONLY ON SERVER
         if (playerEntity instanceof ServerPlayerEntity) {
             // for each pellet
             for (int i = 0; i < weaponType.getPelletCount(); i++) {
@@ -82,7 +82,6 @@ public class GunLike extends RangedWeaponItem {
                 // decrease the ammo
                 int newAmmo = remainingAmmo(itemStack) - 1;
                 playerEntity.sendMessage(Text.literal(remainingAmmo(itemStack) - 1 + "/" + weaponType.getMagSize()), true);
-                playerEntity.sendMessage(Text.literal(Integer.toString(newAmmo)));
                 itemStack.getOrCreateNbt().putInt(NBT_AMMO_ID, newAmmo);
                 // damage the item by 10
                 itemStack.damage(10, playerEntity, event -> {
@@ -112,54 +111,27 @@ public class GunLike extends RangedWeaponItem {
         NbtCompound nbtCompound = stack.getOrCreateNbt();
         ItemStack mainHandGun = ((PlayerEntity) entity).getMainHandStack();
 
-        if (world.isClient()) {
-            if (mainHandGun == stack
-                    && remainingAmmo(stack) < weaponType.getMagSize()
-                    && InventoryUtil.countItemInInventory(((PlayerEntity) entity), weaponType.getAmmoType()) > 0
-                    && !nbtCompound.getBoolean("isReloading")
-                //        && !isSprinting
-            ) {
-                // PacketByteBuf buf = PacketByteBufs.create();
-                // buf.writeBoolean(true);
-                // ClientPlayNetworking.send(ModPackaces.RELOAD_ID, buf);
-            }
-        }
-
+        // executed on server
         if (entity instanceof ServerPlayerEntity) {
             //The actual reload process/tick
+
+            // if the player pressed the reloading key
             if (nbtCompound.getBoolean(NBT_RELOADING_ID)) {
                 entity.sendMessage(Text.literal("NOW IS REALLY RELOADING"));
                 finishReload((ServerPlayerEntity) entity, stack);
-
-                //if ((mainHandGun != stack
-                //        || (InventoryUtil.countItemInInventory((PlayerEntity) entity, weaponType.getAmmoType()) <= 0)
-                //        || (nbtCompound.getInt("rldTick") >= weaponType.getReloadCoolDown())
-                //        || (remainingAmmo(stack) >= weaponType.getMagSize())))
-                //    nbtCompound.putBoolean("isReloading", false);
-
-                //reloadTick(world, nbtCompound, (PlayerEntity) entity, stack);
-            } //else {
-            //if (nbtCompound.getInt("rldTick") <= weaponType.getReloadCoolDown())
-            //    finishReload((PlayerEntity) entity, stack);
-
-            //nbtCompound.putBoolean("isReloading", false);
-            //nbtCompound.putInt("rldTick", 0);
-            //}
+            }
         }
     }
 
     public void reloadTick(World world, NbtCompound nbt, ServerPlayerEntity playerEntity, ItemStack itemStack) {
-        int currentTick = nbt.getInt("rldTick");
-
-        nbt.putInt("rldTick", currentTick + 1);
-
-        if (currentTick >= weaponType.getReloadCoolDown()
-                && InventoryUtil.countItemInInventory(playerEntity, weaponType.getAmmoType()) > 0) {
+        if (InventoryUtil.countItemInInventory(playerEntity, weaponType.getAmmoType(playerEntity)) > 0) {
             finishReload(playerEntity, itemStack);
-            nbt.putInt("rldTick", 0);
         }
     }
 
+    /**
+     * @location ONLY server
+     */
     public void finishReload(ServerPlayerEntity playerEntity, ItemStack itemStack) {
         NbtCompound nbt = itemStack.getOrCreateNbt();
 
@@ -169,8 +141,13 @@ public class GunLike extends RangedWeaponItem {
             return;
         }
 
+        // get the first available ammo type from the player inventory
+        Item firstAvailableAmmoType = InventoryUtil.searchForItemMatchingTag(playerEntity, weaponType.getAmmoType());
+        // get the missing ammo in the weapon
         int missingAmmo = weaponType.getMagSize() - nbt.getInt(NBT_AMMO_ID);
-        int availableAmmoInInventory = InventoryUtil.countItemInInventory(playerEntity, weaponType.getAmmoType());
+        // count the available ammo in the inventory
+        int availableAmmoInInventory = InventoryUtil.countItemInInventory(playerEntity, firstAvailableAmmoType);
+
 
         // if there are no ammunition in the player inventory
         if (availableAmmoInInventory == 0) {
@@ -186,20 +163,18 @@ public class GunLike extends RangedWeaponItem {
         }
 
         if (availableAmmoInInventory >= missingAmmo) {
-            BioshockMod.LOGGER.info("availableAmmoInInventory >= missingAmmo");
             nbt.putInt(NBT_AMMO_ID, weaponType.getMagSize());
-            InventoryUtil.removeItemFromInventory(playerEntity, weaponType.getAmmoType(), missingAmmo);
+            InventoryUtil.removeItemFromInventory(playerEntity, firstAvailableAmmoType, missingAmmo);
         } else {
             nbt.putInt(NBT_AMMO_ID, nbt.getInt(NBT_AMMO_ID) + availableAmmoInInventory);
-            InventoryUtil.removeItemFromInventory(playerEntity, weaponType.getAmmoType(), availableAmmoInInventory);
+            InventoryUtil.removeItemFromInventory(playerEntity, firstAvailableAmmoType, availableAmmoInInventory);
         }
 
+        // set damage and reload cooldown
         playerEntity.getItemCooldownManager().set(this, weaponType.getReloadCoolDown());
-        itemStack.setDamage(this.getMaxDamage() - (nbt.getInt(NBT_AMMO_ID) * 10) + 1);
-        BioshockMod.LOGGER.info(Integer.toString(this.getMaxDamage() - ((nbt.getInt(NBT_AMMO_ID) * 10) + 1)));
-        BioshockMod.LOGGER.info(Integer.toString(this.getMaxDamage()) + "+"
-                + Integer.toString(nbt.getInt(NBT_AMMO_ID)) + "* 10 + 1");
+        itemStack.setDamage(this.getMaxDamage() - ((nbt.getInt(NBT_AMMO_ID) * 10)) - 1);
 
+        // play shooting sound
         playerEntity.getWorld().playSound(
                 null,
                 playerEntity.getBlockPos(),
@@ -207,6 +182,7 @@ public class GunLike extends RangedWeaponItem {
                 SoundCategory.PLAYERS
         );
 
+        nbt.putInt(NBT_LOADED_AMMO, Item.getRawId(firstAvailableAmmoType));
         nbt.putBoolean(NBT_RELOADING_ID, false);
     }
 
@@ -228,9 +204,9 @@ public class GunLike extends RangedWeaponItem {
 
     private void setDefaultNBT(ItemStack stack) {
         NbtCompound nbtCompound = stack.getOrCreateNbt();
-        nbtCompound.putInt("rldTick", 0);
-        nbtCompound.putBoolean("isReloading", false);
+        nbtCompound.putBoolean(NBT_RELOADING_ID, false);
         nbtCompound.putInt(NBT_AMMO_ID, 6);
+        nbtCompound.putInt(NBT_LOADED_AMMO, -1);
     }
 
     @Override

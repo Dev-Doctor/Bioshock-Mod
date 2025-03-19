@@ -12,7 +12,18 @@ base {
 
 repositories {
     maven { url = 'https://maven.minecraftforge.net/' }
+
+    maven {
+        name = 'GeckoLib'
+        url 'https://dl.cloudsmith.io/public/geckolib3/geckolib/maven/'
+        content {
+            includeGroupByRegex("software\\.bernie.*")
+            includeGroup("com.eliotlash.mclib")
+        }
+    }
 }
+
+
 
 dependencies {
     minecraft "com.mojang:minecraft:${project.minecraft_version}"
@@ -24,6 +35,10 @@ dependencies {
 
     // TerraBlender API
     modImplementation "com.github.glitchfiend:TerraBlender-fabric:${project.minecraft_version}-${project.terrablender_version}"
+
+    // Geckolib4
+    modImplementation("software.bernie.geckolib:geckolib-fabric-${minecraft_version}:${geckolib_version}")
+    implementation("com.eliotlash.mclib:mclib:20")
 }
 
 loom {

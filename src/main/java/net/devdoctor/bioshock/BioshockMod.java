@@ -1,10 +1,13 @@
 package net.devdoctor.bioshock;
 
 import net.devdoctor.bioshock.Blocks.ModBlocks;
+import net.devdoctor.bioshock.Entities.AdamSlugEntity;
+import net.devdoctor.bioshock.Entities.ModEntities;
 import net.devdoctor.bioshock.Items.ModItems;
 import net.devdoctor.bioshock.Networking.ModPackaces;
 import net.fabricmc.api.ModInitializer;
 
+import net.fabricmc.fabric.api.object.builder.v1.entity.FabricDefaultAttributeRegistry;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -27,7 +30,11 @@ public class BioshockMod implements ModInitializer {
 
 		ModItemGroups.registerItemGroups();
 
+		ModEntities.registerModEntities();
+
 		ModPackaces.registerC2SPackets();
+
+		FabricDefaultAttributeRegistry.register(ModEntities.ADAM_SLUG, AdamSlugEntity.createAdamSlugAttributes());
 
 		LOGGER.info("Hello Fabric world!");
 	}

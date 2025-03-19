@@ -7,19 +7,26 @@
   "death.attack.shoot": "%1$s was shoot by %2$s",
   "death.attack.shoot.item": "%1$s was shoot by %2$s with %3$s",
 
+
+  "item.bioshock.adam_bottle": "Adam Bottle",
+  "item.bioshock.adam_slug_bucket": "Adam Slug Bucket",
   "item.bioshock.brass_ingot": "Brass Ingot",
-  "item.bioshock.brass_axe": "Brass Axe",
   "item.bioshock.brass_nugget": "Brass Nugget",
-  "item.bioshock.brass_pickaxe": "Brass Pickaxe",
-  "item.bioshock.brass_sword": "Brass Sword",
-  "item.bioshock.brass_shovel": "Brass Shovel",
   "item.bioshock.empty_syringe": "Empty Syringe",
+  "item.bioshock.empty_adam_bottle": "Empty Adam Bottle",
   "item.bioshock.raw_zinc": "Raw Zinc",
+  "item.bioshock.zinc_ingot": "Zinc Ingot",
+  "item.bioshock.zinc_nugget": "Zinc Nugget",
+
   "item.bioshock.antipersonnel_pistol_rounds": "Antipersonnel Pistol Round",
   "item.bioshock.standard_pistol_rounds": "Standard Pistol Round",
   "item.bioshock.ap_pistol_rounds": "Armor-Piercing Pistol Round",
-  "item.bioshock.zinc_ingot": "Zinc Ingot",
-  "item.bioshock.zinc_nugget": "Zinc Nugget",
+
+  "item.bioshock.adam_syringe": "Adam Syringe",
+  "item.bioshock.brass_axe": "Brass Axe",
+  "item.bioshock.brass_pickaxe": "Brass Pickaxe",
+  "item.bioshock.brass_shovel": "Brass Shovel",
+  "item.bioshock.brass_sword": "Brass Sword",
 
   "item.bioshock.revolver": "Revolver",
 
