@@ -4,7 +4,6 @@ import net.devdoctor.bioshock.Entities.IAdamHolder;
 import net.devdoctor.bioshock.ModDamageTypes;
 import net.devdoctor.bioshock.util.InventoryUtil;
 import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.damage.DamageType;
 import net.minecraft.entity.damage.DamageTypes;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;

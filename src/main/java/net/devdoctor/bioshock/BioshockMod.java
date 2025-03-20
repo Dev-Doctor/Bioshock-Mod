@@ -1,8 +1,8 @@
 package net.devdoctor.bioshock;
 
 import net.devdoctor.bioshock.Blocks.ModBlocks;
-import net.devdoctor.bioshock.Entities.AdamSlugEntity;
 import net.devdoctor.bioshock.Entities.ModEntities;
+import net.devdoctor.bioshock.Entities.custom.AdamSlugEntity;
 import net.devdoctor.bioshock.Items.ModItems;
 import net.devdoctor.bioshock.Networking.ModPackaces;
 import net.fabricmc.api.ModInitializer;

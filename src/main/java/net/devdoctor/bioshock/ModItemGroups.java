@@ -32,6 +32,9 @@ public class ModItemGroups {
                         entries.add(ModItems.S_PISTOL_ROUNDS);
                         entries.add(ModItems.AP_PISTOL_ROUNDS);
                         entries.add(ModItems.AnP_PISTOL_ROUNDS);
+                        entries.add(ModItems.ADAM_SLUG_BUCKET);
+                        entries.add(ModItems.EMPTY_ADAM_BOTTLE);
+                        entries.add(ModItems.ADAM_BOTTLE);
                         entries.add(ModItems.TEST_ITEM);
                     })).build()
     );

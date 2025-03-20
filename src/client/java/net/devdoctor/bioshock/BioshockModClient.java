@@ -1,6 +1,8 @@
 package net.devdoctor.bioshock;
 
 import net.devdoctor.bioshock.Entities.ModEntities;
+import net.devdoctor.bioshock.Entitites.AdamSlugModel;
+import net.devdoctor.bioshock.Entitites.AdamSlugRenderer;
 import net.devdoctor.bioshock.Events.KeyInputHandler;
 import net.devdoctor.bioshock.Networking.ModPackaces;
 import net.fabricmc.api.ClientModInitializer;
@@ -13,7 +15,7 @@ public class BioshockModClient implements ClientModInitializer {
 		KeyInputHandler.registerKeyBindings();
 		ModPackaces.registerS2CPackets();
 
-		EntityModelLayerRegistry.registerModelLayer(AdamSlugModel.ADAM_SLUG, AdamSlugModel::getTexturedModelData);
+		//EntityModelLayerRegistry.registerModelLayer(AdamSlugModel.ADAM_SLUG, AdamSlugModel::getTexturedModelData);
 		EntityRendererRegistry.register(ModEntities.ADAM_SLUG, AdamSlugRenderer::new);
 	}
 }

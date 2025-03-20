@@ -16,8 +16,8 @@ import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.text.Text;
 import net.minecraft.util.Hand;
+import net.minecraft.util.Identifier;
 import net.minecraft.util.TypedActionResult;
-import net.minecraft.util.UseAction;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
@@ -134,7 +134,7 @@ public class GunLike extends RangedWeaponItem {
      */
     public void finishReload(ServerPlayerEntity playerEntity, ItemStack itemStack) {
         NbtCompound nbt = itemStack.getOrCreateNbt();
-
+//        NbtList ammoList = nbt.getList(NBT_AMMO_ID, 10);
         // if the weapon is full don't do shit
         if (remainingAmmo(itemStack) == weaponType.getMagSize()) {
             nbt.putBoolean(NBT_RELOADING_ID, false);
@@ -148,9 +148,8 @@ public class GunLike extends RangedWeaponItem {
         // count the available ammo in the inventory
         int availableAmmoInInventory = InventoryUtil.countItemInInventory(playerEntity, firstAvailableAmmoType);
 
-
         // if there are no ammunition in the player inventory
-        if (availableAmmoInInventory == 0) {
+        if (firstAvailableAmmoType == null) {
             // play the appropriate sound and return
             playerEntity.getWorld().playSound(
                     null,
@@ -181,8 +180,7 @@ public class GunLike extends RangedWeaponItem {
                 weaponType.getWeaponSounds().getReload(),
                 SoundCategory.PLAYERS
         );
-
-        nbt.putInt(NBT_LOADED_AMMO, Item.getRawId(firstAvailableAmmoType));
+        nbt.putString(NBT_LOADED_AMMO, Identifier.of(BioshockMod.MOD_ID, firstAvailableAmmoType.toString()).toString());
         nbt.putBoolean(NBT_RELOADING_ID, false);
     }
 
@@ -206,7 +204,7 @@ public class GunLike extends RangedWeaponItem {
         NbtCompound nbtCompound = stack.getOrCreateNbt();
         nbtCompound.putBoolean(NBT_RELOADING_ID, false);
         nbtCompound.putInt(NBT_AMMO_ID, 6);
-        nbtCompound.putInt(NBT_LOADED_AMMO, -1);
+        nbtCompound.putString(NBT_LOADED_AMMO, null);
     }
 
     @Override

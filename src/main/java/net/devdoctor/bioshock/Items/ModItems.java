@@ -41,13 +41,13 @@ public class ModItems {
     public static final Item AnP_PISTOL_ROUNDS = register("antipersonnel_pistol_rounds", new Item(new Item.Settings()));
 
     public static final Item ADAM_SLUG_SPAWN_EGG = register("adam_slug_spawn_egg", new SpawnEggItem(
-            ModEntities.ADAM_SLUG, 0x9df183, 0xbfff3, new Item.Settings()));
-    public static final Item ADAM_SLUG_BUCKET = register("adam_slug_bucket", new EntityBucketItem(ModEntities.ADAM_SLUG, Fluids.WATER, SoundEvents.ITEM_BUCKET_EMPTY_FISH, new Item.Settings()));
+            ModEntities.ADAM_SLUG, 0x000000, 0xef0000, new Item.Settings()));
+    public static final Item ADAM_SLUG_BUCKET = register("adam_slug_bucket", new EntityBucketItem(ModEntities.ADAM_SLUG, Fluids.WATER, SoundEvents.ITEM_BUCKET_EMPTY_FISH, new Item.Settings().maxCount(1)));
 
     public static final Item TEST_ITEM = register("test_item", new TestItem(new Item.Settings()));
 
-    public static final Item EMPTY_ADAM_BOTTLE = register("empty_adam_bottle", new Item(new Item.Settings()));
     public static final Item ADAM_BOTTLE = register("adam_bottle", new Item(new Item.Settings()));
+    public static final Item EMPTY_ADAM_BOTTLE = register("empty_adam_bottle", new Item(new Item.Settings()));
 
     public static void registerModItems() {
 

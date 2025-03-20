@@ -1,6 +1,7 @@
 package net.devdoctor.bioshock.Entities;
 
 import net.devdoctor.bioshock.BioshockMod;
+import net.devdoctor.bioshock.Entities.custom.AdamSlugEntity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.SpawnGroup;
 import net.minecraft.registry.Registries;
@@ -11,8 +12,8 @@ public class ModEntities {
     public static final EntityType<AdamSlugEntity> ADAM_SLUG = Registry.register(
             Registries.ENTITY_TYPE,
             Identifier.of(BioshockMod.MOD_ID, "adam_slug"),
-            EntityType.Builder.create(AdamSlugEntity::new, SpawnGroup.CREATURE)
-            .setDimensions(1f, .25f)
+            EntityType.Builder.create(AdamSlugEntity::new, SpawnGroup.WATER_CREATURE)
+                    .setDimensions(1f, .25f)
                     .build("adam_slug"));
 
     public static void registerModEntities() {
