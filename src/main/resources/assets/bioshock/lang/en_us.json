@@ -30,6 +30,11 @@
 
   "item.bioshock.revolver": "Revolver",
 
+  "item.bioshock.revolver_ext_mag": "Revolver Extended Magazine",
+  "item.bioshock.revolver_ext_mag.tooltip": "An auto-loading magazine effectively quadruples the magazine size of the pistol.",
+  "item.bioshock.revolver_ammo_acc": "Revolver Ammunition Accelerator",
+  "item.bioshock.revolver_ammo_acc.tooltip": "An ammunition accelerator increases the damage done by the pistol.",
+
   "item.bioshock.eve_phial": "Eve Phial",
 
   "item.bioshock.adam_slug_spawn_egg": "Adam Slug Spawn Egg",

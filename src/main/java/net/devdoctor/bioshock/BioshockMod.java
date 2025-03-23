@@ -5,9 +5,13 @@ import net.devdoctor.bioshock.Entities.ModEntities;
 import net.devdoctor.bioshock.Entities.custom.AdamSlugEntity;
 import net.devdoctor.bioshock.Items.ModItems;
 import net.devdoctor.bioshock.Networking.ModPackaces;
+import net.devdoctor.bioshock.util.PlayerUtil;
 import net.fabricmc.api.ModInitializer;
 
+import net.fabricmc.fabric.api.event.EventFactory;
+import net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents;
 import net.fabricmc.fabric.api.object.builder.v1.entity.FabricDefaultAttributeRegistry;
+import net.minecraft.text.Text;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -35,6 +39,16 @@ public class BioshockMod implements ModInitializer {
 		ModPackaces.registerC2SPackets();
 
 		FabricDefaultAttributeRegistry.register(ModEntities.ADAM_SLUG, AdamSlugEntity.createAdamSlugAttributes());
+
+
+		/* WATER CRUSHING MECHANIC */
+		ServerTickEvents.END_SERVER_TICK.register(client -> {
+			client.getPlayerManager().getPlayerList().forEach(player -> {
+				if(PlayerUtil.IsUnderWaterPressure(player.getWorld(), player)) {
+					// MISSING STUFF
+				}
+			});
+		});
 
 		LOGGER.info("Hello Fabric world!");
 	}

@@ -5,6 +5,7 @@ import net.devdoctor.bioshock.Entities.GunProjectileEntity;
 import net.devdoctor.bioshock.Items.Enums.EWeaponType;
 import net.devdoctor.bioshock.util.InventoryUtil;
 import net.minecraft.block.BlockState;
+import net.minecraft.client.item.TooltipContext;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.player.PlayerEntity;
@@ -21,7 +22,9 @@ import net.minecraft.util.TypedActionResult;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
+import org.jetbrains.annotations.Nullable;
 
+import java.util.List;
 import java.util.function.Predicate;
 
 public class GunLike extends RangedWeaponItem {

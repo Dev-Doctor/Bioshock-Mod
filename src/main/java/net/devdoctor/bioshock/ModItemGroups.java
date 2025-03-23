@@ -29,6 +29,8 @@ public class ModItemGroups {
                         entries.add(ModItems.EVE_PHIAL);
                         entries.add(ModItems.ADAM_SYRINGE);
                         entries.add(ModItems.REVOLVER);
+                        entries.add(ModItems.REVOLVER_EXT_MAG);
+                        entries.add(ModItems.REVOLVER_AMMO_ACC);
                         entries.add(ModItems.S_PISTOL_ROUNDS);
                         entries.add(ModItems.AP_PISTOL_ROUNDS);
                         entries.add(ModItems.AnP_PISTOL_ROUNDS);

@@ -4,12 +4,15 @@ import net.devdoctor.bioshock.BioshockMod;
 import net.devdoctor.bioshock.Entities.ModEntities;
 import net.devdoctor.bioshock.Items.Enums.EWeaponType;
 import net.devdoctor.bioshock.Items.Enums.EveType;
+import net.devdoctor.bioshock.interfaces.IGunModifier;
 import net.minecraft.fluid.Fluids;
 import net.minecraft.item.*;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.Identifier;
+
+import java.util.ArrayList;
 
 public class ModItems {
 
@@ -34,6 +37,18 @@ public class ModItems {
     public static final Item ADAM_SYRINGE = register("adam_syringe", new AdamSyringe(new Item.Settings().maxCount(1)));
 
     public static final Item REVOLVER = register("revolver", new GunLike(new Item.Settings(), EWeaponType.REVOLVER));
+
+    /* ################################# UPGRADES ################################ */
+    public static final Item REVOLVER_EXT_MAG = register("revolver_ext_mag", new Attachment(new Item.Settings(), () -> {
+        ArrayList<IGunModifier> a = new ArrayList<>();
+        a.add(GunModifiers.REVOLVER_MAG_INCREASE);
+        return a;
+    }));
+    public static final Item REVOLVER_AMMO_ACC = register("revolver_ammo_acc", new Attachment(new Item.Settings(), () -> {
+        ArrayList<IGunModifier> a = new ArrayList<>();
+        a.add(GunModifiers.DAMAGE_INCREASE);
+        return a;
+    }));
 
     /* #################################   AMMO  ################################# */
     public static final Item S_PISTOL_ROUNDS = register("standard_pistol_rounds", new Item(new Item.Settings()));

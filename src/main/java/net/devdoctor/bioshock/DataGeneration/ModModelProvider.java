@@ -40,6 +40,11 @@ public class ModModelProvider extends FabricModelProvider {
 
         itemModelGenerator.register(ModItems.EMPTY_SYRINGE, Models.GENERATED);
 
+        /* ################################# UPGRADES ################################ */
+        itemModelGenerator.register(ModItems.REVOLVER_EXT_MAG, Models.GENERATED);
+        itemModelGenerator.register(ModItems.REVOLVER_AMMO_ACC, Models.GENERATED);
+
+        /* #################################   AMMO  ################################# */
         itemModelGenerator.register(ModItems.S_PISTOL_ROUNDS, Models.GENERATED);
         itemModelGenerator.register(ModItems.AP_PISTOL_ROUNDS, Models.GENERATED);
         itemModelGenerator.register(ModItems.AnP_PISTOL_ROUNDS, Models.GENERATED);
@@ -51,6 +56,7 @@ public class ModModelProvider extends FabricModelProvider {
     }
 
     public static void generateSpawnEgg(BlockStateModelGenerator modelGen, Item item) {
+        // Adam Slug Spawn Egg
         modelGen.registerParentedItemModel(item, ModelIds.getMinecraftNamespacedItem("template_spawn_egg"));
     }
 }
